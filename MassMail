@@ -1,0 +1,18 @@
+function sendEmails() {
+  
+  var sheet = SpreadsheetApp.getActiveSheet();
+  var dataRange = sheet.getDataRange();
+  var numRows = dataRange.getNumRows();   // Number of rows to process
+  // Fetch the range of cells A2:B3
+  
+  // Fetch values for each row in the Range.
+  var data = dataRange.getValues();
+  for (i in data) {
+    var row = data[i];
+    var emailAddress = row[0];  // First column
+    var name = row[1];       // Second column
+    var subject = "Cosponsorship Request";
+    var message = "Dear "+name+", \n \nThis is a message sent from a script! \n \nBest, \nM";
+    MailApp.sendEmail(emailAddress, subject, message);
+  }
+}
